@@ -7,9 +7,9 @@ Loader for the Umbra script (Roblox). The script file in this repo holds no keys
 This repo is private. Put this in the executor (or its autoexec folder). Fill in your own keys:
 
 ```lua
-script_key = "YOUR_2ND_SCRIPT_KEY" ;
+getgenv().script_key = "YOUR_2ND_SCRIPT_KEY" ; script_key = "YOUR_2ND_SCRIPT_KEY" ;
 getgenv().UmbraKey = "YOUR_TRACKER_KEY" ;
-loadstring(request({Url="https://raw.githubusercontent.com/Umbra136/UmbraLoader/main/UmbraScript.lua",Headers={Authorization="Bearer YOUR_GITHUB_TOKEN"}}).Body)()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Umbra136/UmbraLoader/main/UmbraScript.lua"))()
 ```
 
 - `GITHUB_TOKEN` is a fine-grained token with read-only access to this repo (Contents: Read-only).

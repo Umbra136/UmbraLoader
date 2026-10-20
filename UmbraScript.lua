@@ -122,7 +122,7 @@ local CHECK_INTERVAL = 5
 local SECOND = {
 key = "",
 delay = 5,
-onPilots = false,
+onPilots = true,
 }
 local LIMIT = 100
 local ACCOUNTS_PER_SERVER = 1
@@ -3592,12 +3592,18 @@ local secondKey = SECOND.key
 if secondKey == "" then
 pcall(function()
 local g = (getgenv and getgenv()) or _G
-local k = g.script_key or g.SCRIPT_KEY or _G.script_key or _G.SCRIPT_KEY
+local k = g.script_key or g.SCRIPT_KEY or _G.script_key or _G.SCRIPT_KEY or (shared and (shared.script_key or shared.SCRIPT_KEY))
+if type(k) ~= "string" and getfenv then
+for lvl = 1, 3 do
+local okf, fe = pcall(getfenv, lvl)
+if okf and type(fe) == "table" and type(fe.script_key) == "string" then k = fe.script_key break end
+end
+end
 if type(k) == "string" then secondKey = (k:gsub("%s+", "")) end
 end)
 end
 if secondKey == "" then
-launchLog("OFF: no key (set script_key = \"...\" in your loader line)")
+launchLog("OFF: no script_key found. Put getgenv().script_key = \"...\" in your loader line", true)
 elseif isPilot and not SECOND.onPilots then
 launchLog("OFF: this account is a pilot")
 else
