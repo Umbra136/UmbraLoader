@@ -18,7 +18,17 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Umbra136/UmbraLoader/
 
 `loader.example.lua` is the same thing as a file.
 
+## Server Picker (manual server list)
+
+`ServerPicker.lua` is a separate, standalone script (no keys needed). One line, same token as above:
+
+```lua
+loadstring(request({Url="https://raw.githubusercontent.com/Umbra136/UmbraLoader/main/ServerPicker.lua",Headers={Authorization="Bearer YOUR_GITHUB_TOKEN"}}).Body)()
+```
+
 ## Files
 
 - `UmbraScript.lua` the script (no keys inside)
 - `loader.example.lua` the two-line loader with placeholders
+- `ServerPicker.lua` the standalone server picker
+- `ServerPicker.loader.lua` its one-line loader with a placeholder token
